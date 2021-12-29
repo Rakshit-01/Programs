@@ -27,3 +27,31 @@ int main()
 
     return 0;
 }
+
+2.Check wheter a string is pallindrome or not
+#include<iostream>
+using namespace std;
+
+bool ispallindrome(string &str)
+{
+ string rev=str;
+ int begin=0;
+ int end=str.length()-1;
+ while(begin<end)
+ {
+     if(str[begin]!=str[end])
+       return false;
+     begin++;
+     end--;
+ }
+ return true;
+}
+int main()
+{
+    string str="RRR";
+    int a=ispallindrome(str);
+    if(a==true)
+      cout<<"Pallindrome";
+    else
+      cout<<"not a pallindrome";
+}
