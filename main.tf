@@ -1,36 +1,25 @@
-provider "docker" {}
-provider "random" {}
+provider "aws" { 
 
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
-  keep_locally = false
-}
+region = "us-east-1" 
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name  = "hello-terraform"
-  ports {
-    internal = 80
-    external = 8000
-  }
-}
+#access_key=var.AWS_ACCESS_KEY 
 
-resource "random_pet" "dog" {
-  length = 2
-}
+#secret_key=var.AWS_SECRET_KEY 
 
-module "nginx-pet" {
-  source = "./nginx"
+} 
 
-  container_name = "hello-${random_pet.dog.id}"
-  nginx_port = 8001
-}
+resource "aws_instance" "web" { 
 
-module "hello" {
-  source  = "joatmon08/hello/random"
-  version = "3.0.1"
+ami           = "ami-0b5eea76982371e91" 
 
-  hello = random_pet.dog.id
+instance_type = "t3.micro" 
 
-	secret_key = "secret"
-}
+ 
+
+tags = { 
+
+Name = "HelloWorld" 
+
+} 
+
+} 
