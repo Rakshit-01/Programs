@@ -1,2 +1,0 @@
-# Programs
-Easy-Advanced Code
